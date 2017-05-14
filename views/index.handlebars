@@ -1,0 +1,39 @@
+<h1>Everybody loves Burgers!</h1>
+<h2>Order Your Burger Now!</h2>
+<form class="create-update-form" action="/" method="POST">
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="inputName">
+  </div>
+  <button type="submit">Make My Burger</button>
+</form>
+
+<p class ="Ready">Yout order is ready:</p>
+<ul>
+  {{#each burgers}}
+    {{#unless this.devoured}}
+      <li>
+        {{this.burger_name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devour" value="true">
+          <button type="submit">Click here to eat it!</button>
+        </form>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<p class="Eaten">Burgers Devoured:</p>
+<div class="list">
+<ul>
+  {{#each burgers}}
+    {{#if this.devoured}}
+      <li>
+        {{this.burger_name}}
+
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+</div>
